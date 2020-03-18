@@ -1,12 +1,15 @@
 module.exports = class DepthCalculator {
-    calculateDepth(arr, step=1) {
-        for (let i=0; i<arr.length;i++) {
+    calculateDepth(arr, step = 1) {
+        let counter = step
+        let res
+        for (let i = 0; i < arr.length; i++) {
             if (Array.isArray(arr[i])) {
-                console.log('step',step)
-                step = this.calculateDepth(arr[i],step+1);
-            } else if (i === arr.length-1) {
-                return step;
+                res = this.calculateDepth(arr[i], step + 1)
+                if (res > counter) {
+                    counter = res
+                }
             }
-        };
-    }
+        }
+        return counter
+    };
 }
